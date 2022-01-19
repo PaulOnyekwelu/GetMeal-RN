@@ -9,23 +9,18 @@ interface iSearchBar {
 
 const SearchBar = ({ value, searchHandler }: iSearchBar) => {
   return (
-    <View style={styles.container}>
-      <Searchbar
-        // placeholder="Search"
-        value={value}
-        onChangeText={searchHandler}
-        autoComplete={false}
-        style={styles.searchBar}
-      />
-    </View>
+    <Searchbar
+      // placeholder="Search"
+      value={value}
+      onChangeText={searchHandler}
+      autoComplete={false}
+      style={styles.searchBar}
+    />
   );
 };
 
 export default SearchBar;
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-  },
   searchBar: {},
 });
