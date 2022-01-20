@@ -1,11 +1,5 @@
 import { SafeAreaView, StatusBar, View } from "react-native";
-import { Text } from "react-native-paper";
 import styled from "styled-components";
-
-export const TextTitle = styled(Text)`
-  color: black;
-  font-size: 20px;
-`;
 
 export const CustomSafeAreaView = styled(SafeAreaView)`
   flex: 1;
@@ -13,11 +7,11 @@ export const CustomSafeAreaView = styled(SafeAreaView)`
 `;
 
 export const PaddedView = styled(View)`
-  padding: 10px;
+  padding: ${({theme}) => theme.sizes[1]};
 `;
 
 export const RestaurantListView = styled(View)`
   flex: 1;
-  background-color: white;
-  padding: 10px;
+  background-color: ${props => props.theme.colors.bg.primary};
+  padding: ${({theme}) => theme.sizes[1]}
 `;
