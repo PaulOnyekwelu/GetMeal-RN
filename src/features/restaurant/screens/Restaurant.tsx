@@ -1,47 +1,29 @@
 import React, { useState } from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  StatusBar,
-  Platform,
-} from "react-native";
-import SearchBar from "../../../components/SearchBar";
+import { Searchbar } from "react-native-paper";
 import RestaurantInfoCard from "../components/RestaurantInfoCard";
+import { CustomSafeAreaView, PaddedView, RestaurantListView } from "../styles";
 
 const Restaurant = () => {
   const [value, setValue] = useState("");
   const searchHandler = (val: string) => {
     setValue(val);
   };
-  console.log(StatusBar.currentHeight);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.searchBar}>
-        <SearchBar value={value} searchHandler={searchHandler} />
-      </View>
-      <View style={styles.content}>
+    <CustomSafeAreaView>
+      <PaddedView>
+        <Searchbar
+          autoComplete={false}
+          value={value}
+          onChangeText={searchHandler}
+        />
+      </PaddedView>
+      <RestaurantListView>
         <RestaurantInfoCard />
-      </View>
+      </RestaurantListView>
       {/* <StatusBar style="auto" /> */}
-    </SafeAreaView>
+    </CustomSafeAreaView>
   );
 };
 
 export default Restaurant;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: Platform.OS === "android" ? StatusBar.currentHeight : undefined,
-  },
-  searchBar: {
-    padding: 10,
-  },
-  content: {
-    flex: 1,
-    backgroundColor: "white",
-    padding: 10,
-  },
-});

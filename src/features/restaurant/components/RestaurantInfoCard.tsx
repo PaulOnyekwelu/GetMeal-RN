@@ -1,8 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Card, Title, Avatar, Button, Paragraph } from "react-native-paper";
-
-const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
+import { Card, Title, Paragraph } from "react-native-paper";
 
 const RestaurantInfoCard = () => {
   return (
@@ -17,5 +14,3 @@ const RestaurantInfoCard = () => {
 };
 
 export default RestaurantInfoCard;
-
-const styles = StyleSheet.create({});
