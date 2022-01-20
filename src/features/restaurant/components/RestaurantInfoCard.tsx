@@ -1,14 +1,15 @@
 import React from "react";
-import { Card, Title, Paragraph } from "react-native-paper";
+import { Card, Paragraph } from "react-native-paper";
+import { PaddedNoTopView, PaddedView, StyledCardCover, StyledParagraph, StyledTitle } from "../styles";
 
 const RestaurantInfoCard = () => {
   return (
     <Card>
-      <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
-      <Card.Content>
-        <Title>Some Restaurant</Title>
-        <Paragraph>Card content</Paragraph>
-      </Card.Content>
+      <StyledCardCover source={{ uri: "https://picsum.photos/700" }} />
+      <PaddedNoTopView>
+        <StyledTitle>Some Restaurant</StyledTitle>
+        <StyledParagraph>Card content</StyledParagraph>
+      </PaddedNoTopView>
     </Card>
   );
 };
