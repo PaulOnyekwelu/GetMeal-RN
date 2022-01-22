@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 import { useFonts } from "expo-font";
 import { Oswald_400Regular } from "@expo-google-fonts/oswald";
 import { Lato_400Regular } from "@expo-google-fonts/lato";
-import Restaurant from "./src/features/restaurant/screens/Restaurant";
+import Restaurant from "./src/features/restaurant";
 import { theme } from "./src/theme";
 
 export default function App() {
