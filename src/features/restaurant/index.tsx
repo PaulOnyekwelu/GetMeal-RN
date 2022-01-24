@@ -5,7 +5,7 @@ import { CustomSafeAreaView } from "../styles";
 import { RestaurantInfoCardWrapper, RestaurantListView, StyledSearchView } from "./restaurantStyles";
 import { FlatList } from "react-native";
 
-const Restaurant = () => {
+const RestaurantScreen = () => {
   const [value, setValue] = useState("");
   const searchHandler = (val: string) => {
     setValue(val);
@@ -36,4 +36,4 @@ const Restaurant = () => {
   );
 };
 
-export default Restaurant;
+export default RestaurantScreen;
