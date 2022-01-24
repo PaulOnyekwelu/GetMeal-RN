@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const CustomSafeAreaView = styled(SafeAreaView)`
   flex: 1;
   ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
-  background-color: ${({theme}) => theme.colors.bg.secondary};
+  background-color: ${({theme}) => theme.colors.bg.primary};
 `;
 
 export const PaddedView = styled(View).attrs((props) => ({

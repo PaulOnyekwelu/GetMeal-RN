@@ -46,12 +46,14 @@ export const StyledRating = styled(StyledRow).attrs({
   $align: "stretch",
 })``;
 
-export const StyledSearchView = styled(PaddedView)``;
+export const StyledSearchView = styled(PaddedView)`
+  background-color: ${({ theme }) => theme.colors.bg.secondary};
+`;
 
 export const RestaurantInfoCardWrapper = styled(PaddedView).attrs((props) => ({
   theme: {
     ...props.theme,
-    sizes: props.theme.sizes.map((item:string, index: number) => {
+    sizes: props.theme.sizes.map((item: string, index: number) => {
       if (index === 1) {
         return "20px";
       }
@@ -59,5 +61,5 @@ export const RestaurantInfoCardWrapper = styled(PaddedView).attrs((props) => ({
     }),
   },
 }))`
-  padding: ${({theme}) => `${theme.sizes[0]} ${theme.sizes[1]}`};
+  padding: ${({ theme }) => `${theme.sizes[0]} ${theme.sizes[1]}`};
 `;

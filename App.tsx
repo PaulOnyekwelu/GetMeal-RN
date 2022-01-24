@@ -26,7 +26,8 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <NavigationContainer>
         <Tabs.Navigator
-          screenOptions={({ route }) => ({
+          screenOptions={(props) => ({
+            headerShown: false,
             tabBarActiveTintColor: "tomato",
             tabBarInactiveTintColor: "gray",
           })}
