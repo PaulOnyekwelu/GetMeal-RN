@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import { Card } from "react-native-paper";
+import { ActivityIndicator, Card } from "react-native-paper";
 import styled from "styled-components";
 import { PaddedView, StyledRow } from "../styles";
 
@@ -14,6 +14,13 @@ export const StyledTitle = styled(Text)`
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   font-family: ${({ theme }) => theme.fonts.heading};
   color: ${({ theme }) => theme.colors.ui.primary};
+`;
+
+export const StyledClosedText = styled(Text)`
+  font-size: ${({ theme }) => theme.fontSizes.button};
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  font-family: ${({ theme }) => theme.fonts.heading};
+  color: ${({ theme }) => theme.colors.text.error};
 `;
 
 export const StyledParagraph = styled(Text)`
@@ -63,4 +70,9 @@ export const RestaurantInfoCardWrapper = styled(PaddedView).attrs((props) => ({
 }))`
   /* padding: ${({ theme }) => `${theme.sizes[0]} ${theme.sizes[1]}`}; */
   padding-top: 0px;
+`;
+
+export const ActivityIndicatorView = styled(ActivityIndicator)`
+  height: 100%;
+  width: 100%;
 `;

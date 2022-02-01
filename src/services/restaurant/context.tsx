@@ -5,14 +5,24 @@ type iRestaurantContextProvider = {
   children: JSX.Element;
 };
 
+type iRestaurantContext = {
+  restaurants: any[];
+  isLoading: boolean;
+  error: string | null;
+};
+
+export const restaurantContext = createContext<iRestaurantContext>({
+  restaurants: [],
+  isLoading: false,
+  error: null,
+});
+
 const RestaurantsContextProvider = ({
   children,
 }: iRestaurantContextProvider) => {
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const restaurantContext = createContext({});
 
   const retrieveRestaurants = () => {
     setIsLoading(true);
@@ -21,13 +31,13 @@ const RestaurantsContextProvider = ({
         try {
           const { results } = await restaurantService();
           setRestaurants(results);
+          setIsLoading(false);
         } catch (error: any) {
           console.log({ error });
           setError(error);
         }
       })();
-    }, 3000);
-    setIsLoading(false);
+    }, 5000);
     return () => clearTimeout(timeout);
   };
 
