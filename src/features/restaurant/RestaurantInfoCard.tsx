@@ -26,14 +26,18 @@ const RestaurantInfoCard = ({ restuarant }) => {
     business_status,
   } = restuarant;
   const ratedStar = (value: number) => {
-    let rated = value > 5 ? 5 : value <= 0 ? 0 : value;
-    return Array.from(new Array(Math.floor(rated)));
+    if (value) {
+      let rated = value > 5 ? 5 : value <= 0 ? 0 : value;
+      return Array.from(new Array(Math.floor(rated)));
+    }
   };
 
   const unRatedStar = (rating: number) => {
-    const diff = 5 - Math.floor(rating);
-    const unrated = diff <= 0 ? 0 : diff >= 5 ? 5 : diff;
-    return Array.from(new Array(Math.floor(unrated)));
+    if (rating) {
+      const diff = 5 - Math.floor(rating);
+      const unrated = diff <= 0 ? 0 : diff >= 5 ? 5 : diff;
+      return Array.from(new Array(Math.floor(unrated)));
+    }
   };
 
   return (
@@ -43,15 +47,17 @@ const RestaurantInfoCard = ({ restuarant }) => {
         <StyledTitle>{name}</StyledTitle>
         <RestaurantRatingView $justify="space-between">
           <StyledRating>
-            {ratedStar(rating).map((_, index) => (
-              <Entypo key={index} name="star" size={20} color="gold" />
-            ))}
-            {unRatedStar(rating).map((_, index) => (
-              <Entypo key={index} name="star" size={20} color="grey" />
-            ))}
+            {rating &&
+              ratedStar(rating).map((_, index) => (
+                <Entypo key={index} name="star" size={20} color="gold" />
+              ))}
+            {rating &&
+              unRatedStar(rating).map((_, index) => (
+                <Entypo key={index} name="star" size={20} color="grey" />
+              ))}
           </StyledRating>
           <StyledRow>
-            {business_status && business_status === 'CLOSED_TEMPORARILY' && (
+            {business_status && business_status === "CLOSED_TEMPORARILY" && (
               <StyledClosedText>CLOSED_TEMPORARILY</StyledClosedText>
             )}
             {opening_hours && opening_hours.open_now && (

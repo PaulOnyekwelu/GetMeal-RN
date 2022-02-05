@@ -1,37 +1,23 @@
 import React, { useState, useContext } from "react";
-import { Searchbar } from "react-native-paper";
 import RestaurantInfoCard from "./RestaurantInfoCard";
 import { CustomSafeAreaView, PaddedView } from "../styles";
 import {
   ActivityIndicatorView,
   RestaurantInfoCardWrapper,
   RestaurantListView,
-  StyledSearchView,
   StyledTitle,
 } from "./restaurantStyles";
 import { FlatList } from "react-native";
 import { restaurantContext } from "../../services/restaurant/context";
+import SearchComponent from "./SearchComponent";
 
 const RestaurantScreen = () => {
-  const [value, setValue] = useState("");
-  const searchHandler = (val: string) => {
-    setValue(val);
-  };
-
   const { restaurants, error, isLoading } = useContext(restaurantContext);
 
   return (
     <CustomSafeAreaView>
-      <StyledSearchView>
-        <Searchbar
-          autoComplete={false}
-          value={value}
-          onChangeText={searchHandler}
-        />
-      </StyledSearchView>
-      {isLoading && (
-        <ActivityIndicatorView />
-      )}
+      <SearchComponent />
+      {isLoading && <ActivityIndicatorView />}
       {!isLoading && error && (
         <PaddedView>
           <StyledTitle>{error}</StyledTitle>

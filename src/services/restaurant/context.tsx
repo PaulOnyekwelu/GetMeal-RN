@@ -1,4 +1,5 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { locationContext } from "../location/context";
 import { restaurantService } from "./service";
 
 type iRestaurantContextProvider = {
@@ -23,27 +24,31 @@ const RestaurantsContextProvider = ({
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { location } = useContext(locationContext);
+  const { lat, lng } = location || { lat: undefined, lng: undefined };
 
-  const retrieveRestaurants = () => {
+  const retrieveRestaurants = (locationString: string) => {
     setIsLoading(true);
     const timeout = setTimeout(() => {
       (async () => {
         try {
-          const { results } = await restaurantService();
+          const { results } = await restaurantService(locationString);
           setRestaurants(results);
+          setError(null);
           setIsLoading(false);
-        } catch (error: any) {
-          console.log({ error });
-          setError(error);
+        } catch (err: any) {
+          setError(err);
+          setRestaurants([]);
+          setIsLoading(false);
         }
       })();
-    }, 5000);
+    }, 2000);
     return () => clearTimeout(timeout);
   };
 
   useEffect(() => {
-    retrieveRestaurants();
-  }, []);
+    retrieveRestaurants(`${lat},${lng}`);
+  }, [location]);
 
   return (
     <restaurantContext.Provider value={{ restaurants, isLoading, error }}>
