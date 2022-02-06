@@ -15,7 +15,19 @@ import {
 } from "./restaurantStyles";
 import { StyledIcon, StyledRow } from "../styles";
 
-const RestaurantInfoCard = ({ restuarant }) => {
+type iRestaurant = {
+  name: string;
+  icon: string;
+  photos: any[];
+  vicinity: string;
+  rating: number;
+  opening_hours: {
+    open_now: boolean;
+  };
+  business_status: string;
+};
+
+const RestaurantInfoCard = ({ restuarant }: { restuarant: iRestaurant }) => {
   const {
     name,
     icon,
@@ -30,6 +42,7 @@ const RestaurantInfoCard = ({ restuarant }) => {
       let rated = value > 5 ? 5 : value <= 0 ? 0 : value;
       return Array.from(new Array(Math.floor(rated)));
     }
+    return [];
   };
 
   const unRatedStar = (rating: number) => {
@@ -38,6 +51,7 @@ const RestaurantInfoCard = ({ restuarant }) => {
       const unrated = diff <= 0 ? 0 : diff >= 5 ? 5 : diff;
       return Array.from(new Array(Math.floor(unrated)));
     }
+    return [];
   };
 
   return (
