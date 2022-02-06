@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
 import { StyledSearchView } from "./restaurantStyles";
 import { Searchbar } from "react-native-paper";
 import { locationContext } from "../../services/location/context";
