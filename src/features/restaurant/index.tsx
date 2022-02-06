@@ -7,7 +7,7 @@ import {
   RestaurantListView,
   StyledTitle,
 } from "./restaurantStyles";
-import { FlatList, Pressable } from "react-native";
+import { FlatList, TouchableOpacity } from "react-native";
 import { restaurantContext } from "../../services/restaurant/context";
 import SearchComponent from "./SearchComponent";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -32,15 +32,15 @@ const RestaurantScreen = ({ navigation }: props) => {
           <FlatList
             data={restaurants}
             renderItem={({ item }) => (
-              <Pressable
+              <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate("RestaurantDetails", { item: item })
+                  navigation.navigate("RestaurantDetails", { restaurant: item })
                 }
               >
                 <RestaurantInfoCardWrapper>
                   <RestaurantInfoCard restuarant={item} />
                 </RestaurantInfoCardWrapper>
-              </Pressable>
+              </TouchableOpacity>
             )}
             keyExtractor={(item) => item.place_id}
           />

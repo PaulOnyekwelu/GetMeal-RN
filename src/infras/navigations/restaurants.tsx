@@ -9,14 +9,17 @@ import { iRestaurant } from "../../features/restaurant/RestaurantInfoCard";
 
 export type restaurantParamList = {
   Restaurants: undefined;
-  RestaurantDetails: { item: iRestaurant };
+  RestaurantDetails: { restaurant: iRestaurant };
 };
 
 const RestaurantStack = createStackNavigator<restaurantParamList>();
 const RestaurantsNavigator = () => {
   return (
     <RestaurantStack.Navigator
-      screenOptions={{ ...TransitionPresets.ModalPresentationIOS }}
+      screenOptions={{
+        ...TransitionPresets.ModalPresentationIOS,
+        headerShown: false,
+      }}
     >
       <RestaurantStack.Screen name="Restaurants" component={RestaurantScreen} />
       <RestaurantStack.Screen
