@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import RestaurantInfoCard from "./RestaurantInfoCard";
 import { CustomSafeAreaView, PaddedView } from "../styles";
 import {
@@ -7,11 +7,15 @@ import {
   RestaurantListView,
   StyledTitle,
 } from "./restaurantStyles";
-import { FlatList } from "react-native";
+import { FlatList, Pressable } from "react-native";
 import { restaurantContext } from "../../services/restaurant/context";
 import SearchComponent from "./SearchComponent";
+import { StackScreenProps } from "@react-navigation/stack";
+import { restaurantParamList } from "../../infras/navigations/restaurants";
 
-const RestaurantScreen = () => {
+type props = StackScreenProps<restaurantParamList, "Restaurants">;
+
+const RestaurantScreen = ({ navigation }: props) => {
   const { restaurants, error, isLoading } = useContext(restaurantContext);
 
   return (
@@ -28,9 +32,15 @@ const RestaurantScreen = () => {
           <FlatList
             data={restaurants}
             renderItem={({ item }) => (
-              <RestaurantInfoCardWrapper>
-                <RestaurantInfoCard restuarant={item} />
-              </RestaurantInfoCardWrapper>
+              <Pressable
+                onPress={() =>
+                  navigation.navigate("RestaurantDetails", { item: item })
+                }
+              >
+                <RestaurantInfoCardWrapper>
+                  <RestaurantInfoCard restuarant={item} />
+                </RestaurantInfoCardWrapper>
+              </Pressable>
             )}
             keyExtractor={(item) => item.place_id}
           />

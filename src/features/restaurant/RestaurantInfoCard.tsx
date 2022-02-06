@@ -15,7 +15,7 @@ import {
 } from "./restaurantStyles";
 import { StyledIcon, StyledRow } from "../styles";
 
-type iRestaurant = {
+export type iRestaurant = {
   name: string;
   icon: string;
   photos: any[];
