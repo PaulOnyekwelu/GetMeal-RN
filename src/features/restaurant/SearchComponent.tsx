@@ -25,5 +25,3 @@ const SearchComponent = () => {
 };
 
 export default SearchComponent;
-
-const styles = StyleSheet.create({});
