@@ -12,6 +12,6 @@ export const getLatLng = (result) => {
   const { geometry } = result.results[0];
   if (geometry) {
     const { lat, lng } = geometry.location;
-    return { lat, lng };
+    return { lat, lng, viewport: geometry.viewport };
   }
 };

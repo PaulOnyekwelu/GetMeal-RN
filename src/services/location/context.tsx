@@ -1,12 +1,27 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { getLatLng, locationRequest } from "./service";
 
 type iLocationContextProvider = {
   children: JSX.Element;
 };
 
+type iViewPort = {
+  northeast: {
+    lat: number;
+    lng: number;
+  },
+  southwest: {
+    lat: number;
+    lng: number;
+  },
+}
+
 type iLocation =
-  | { lat: string | undefined; lng: string | undefined }
+  | {
+      lat: number;
+      lng: number;
+      viewport: iViewPort | undefined;
+    }
   | undefined;
 
 type iLocationContext = {
@@ -47,6 +62,11 @@ const LocationContextProvider = ({ children }: iLocationContextProvider) => {
         setIsLoading(false);
       });
   };
+
+  useEffect(() => {
+    onSearch(keyword);
+  }, []);
+
   return (
     <locationContext.Provider
       value={{ location, keyword, isLoading, error, onSearch }}

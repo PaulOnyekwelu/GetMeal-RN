@@ -9,8 +9,7 @@ const MapSearch = () => {
 
   useEffect(() => {
     setSearchValue(keyword)
-    if (searchValue) onSearch(searchValue);
-  }, []);
+  }, [keyword]);
 
   return (
     <StyledSearchView>
