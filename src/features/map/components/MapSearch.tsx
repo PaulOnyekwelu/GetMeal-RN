@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StyledSearchView } from "../restaurantStyles";
 import { Searchbar } from "react-native-paper";
 import { locationContext } from "../../../services/location/context";
+import { StyledSearchView } from "../mapStyle";
 
-const SearchComponent = () => {
+const MapSearch = () => {
   const { onSearch, keyword } = useContext(locationContext);
   const [searchValue, setSearchValue] = useState(keyword);
 
   useEffect(() => {
-    setSearchValue(keyword);
+    setSearchValue(keyword)
     if (searchValue) onSearch(searchValue);
   }, []);
 
@@ -24,4 +24,4 @@ const SearchComponent = () => {
   );
 };
 
-export default SearchComponent;
+export default MapSearch;
