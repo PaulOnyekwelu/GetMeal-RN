@@ -5,7 +5,7 @@ import {
 } from "@react-navigation/stack";
 import RestaurantScreen from "../../features/restaurant";
 import RestaurantDetails from "../../features/restaurant/RestaurantDetails";
-import { iRestaurant } from "../../features/restaurant/RestaurantInfoCard";
+import { iRestaurant } from "../../features/restaurant/components/RestaurantInfoCard";
 
 export type restaurantParamList = {
   Restaurants: undefined;

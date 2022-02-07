@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StyledSearchView } from "./restaurantStyles";
+import { StyledSearchView } from "../restaurantStyles";
 import { Searchbar } from "react-native-paper";
-import { locationContext } from "../../services/location/context";
+import { locationContext } from "../../../services/location/context";
 
 const SearchComponent = () => {
   const { onSearch, keyword } = useContext(locationContext);

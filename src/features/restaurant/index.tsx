@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import RestaurantInfoCard from "./RestaurantInfoCard";
+import RestaurantInfoCard from "./components/RestaurantInfoCard";
 import { CustomSafeAreaView, PaddedView } from "../styles";
 import {
   ActivityIndicatorView,
@@ -9,7 +9,7 @@ import {
 } from "./restaurantStyles";
 import { FlatList, TouchableOpacity } from "react-native";
 import { restaurantContext } from "../../services/restaurant/context";
-import SearchComponent from "./SearchComponent";
+import SearchComponent from "./components/SearchComponent";
 import { StackScreenProps } from "@react-navigation/stack";
 import { restaurantParamList } from "../../infras/navigations/restaurants";
 

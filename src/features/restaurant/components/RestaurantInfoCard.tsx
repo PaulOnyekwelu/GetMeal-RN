@@ -3,7 +3,7 @@ import { Image } from "react-native";
 import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 import { Entypo } from "@expo/vector-icons";
-import OpenSvg from "../../../assets/open";
+import OpenSvg from "../../../../assets/open";
 import {
   InfoView,
   RestaurantRatingView,
@@ -12,8 +12,8 @@ import {
   StyledParagraph,
   StyledRating,
   StyledTitle,
-} from "./restaurantStyles";
-import { StyledIcon, StyledRow } from "../styles";
+} from "../restaurantStyles";
+import { StyledIcon, StyledRow } from "../../styles";
 
 export type iRestaurant = {
   name: string;
