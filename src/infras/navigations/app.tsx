@@ -26,7 +26,7 @@ export default function AppNavigator() {
               <Ionicons name="md-restaurant" size={size} color={color} />
             ),
           }}
-          name="RestaurantsNavigator"
+          name="Restaurants"
           component={RestaurantsNavigator}
         />
         <Tabs.Screen

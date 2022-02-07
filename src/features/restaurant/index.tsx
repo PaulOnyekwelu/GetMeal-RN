@@ -13,7 +13,7 @@ import SearchComponent from "./components/SearchComponent";
 import { StackScreenProps } from "@react-navigation/stack";
 import { restaurantParamList } from "../../infras/navigations/restaurants";
 
-type props = StackScreenProps<restaurantParamList, "Restaurants">;
+type props = StackScreenProps<restaurantParamList, "Restaurant">;
 
 const RestaurantScreen = ({ navigation }: props) => {
   const { restaurants, error, isLoading } = useContext(restaurantContext);

@@ -8,7 +8,7 @@ import RestaurantDetails from "../../features/restaurant/RestaurantDetails";
 import { iRestaurant } from "../../features/restaurant/components/RestaurantInfoCard";
 
 export type restaurantParamList = {
-  Restaurants: undefined;
+  Restaurant: undefined;
   RestaurantDetails: { restaurant: iRestaurant };
 };
 
@@ -21,7 +21,7 @@ const RestaurantsNavigator = () => {
         headerShown: false,
       }}
     >
-      <RestaurantStack.Screen name="Restaurants" component={RestaurantScreen} />
+      <RestaurantStack.Screen name="Restaurant" component={RestaurantScreen} />
       <RestaurantStack.Screen
         name="RestaurantDetails"
         component={RestaurantDetails}
