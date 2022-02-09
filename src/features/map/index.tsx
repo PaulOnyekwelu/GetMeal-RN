@@ -4,7 +4,8 @@ import { Map } from "./mapStyle";
 import MapSearch from "./components/MapSearch";
 import { locationContext } from "../../services/location/context";
 import { restaurantContext } from "../../services/restaurant/context";
-import { Marker } from "react-native-maps";
+import { Callout, Marker } from "react-native-maps";
+import MapCallout from "./components/MapCallout";
 
 const defaultLocation = {
   lat: 0,
@@ -46,7 +47,11 @@ const MapScreen = () => {
                     latitude: res.geometry.location.lat,
                     longitude: res.geometry.location.lng,
                   }}
-                ></Marker>
+                >
+                  <Callout style={{width: 170, height: 170}}>
+                    <MapCallout restaurant={res} />
+                  </Callout>
+                </Marker>
               );
             })}
         </Map>
