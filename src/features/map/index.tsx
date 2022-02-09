@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { Map } from "./mapStyle";
 import MapSearch from "./components/MapSearch";
 import { locationContext } from "../../services/location/context";
 import { restaurantContext } from "../../services/restaurant/context";
-import MapView, { Marker } from "react-native-maps";
+import { Marker } from "react-native-maps";
 
 const defaultLocation = {
   lat: 0,
@@ -38,9 +38,10 @@ const MapScreen = () => {
           }}
         >
           {restaurants &&
-            restaurants.map((res) => {
+            restaurants.map((res, index) => {
               return (
                 <Marker
+                  key={`${res.geometry.location.lat}-${index}`}
                   coordinate={{
                     latitude: res.geometry.location.lat,
                     longitude: res.geometry.location.lng,
@@ -55,5 +56,3 @@ const MapScreen = () => {
 };
 
 export default MapScreen;
-
-const styles = StyleSheet.create({});
