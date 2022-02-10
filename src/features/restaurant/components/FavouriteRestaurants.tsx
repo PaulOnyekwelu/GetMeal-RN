@@ -34,6 +34,7 @@ const FavouriteRestaurants = ({
               onPress={() =>
                 navigateTo("RestaurantDetails", { restaurant: fav })
               }
+              key={`${fav.place_id}-restaurant`}
             >
               <FavRestaurant>
                 <MapCallout restaurant={fav} />
