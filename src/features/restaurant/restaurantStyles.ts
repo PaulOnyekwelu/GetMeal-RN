@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text, View, ScrollView } from "react-native";
 import { ActivityIndicator, Card } from "react-native-paper";
 import styled from "styled-components";
 import { PaddedView, StyledRow } from "../styles";
@@ -55,6 +55,16 @@ export const StyledRating = styled(StyledRow).attrs({
 
 export const StyledSearchView = styled(PaddedView)`
   background-color: ${({ theme }) => theme.colors.bg.secondary};
+`;
+
+export const FavRestaurantWrapper = styled(PaddedView).attrs({
+  $direction: "horizontal",
+})`
+  background-color: ${({ theme }) => theme.colors.bg.secondary};
+`;
+
+export const FavRestaurant = styled(View)`
+  padding: 5px;
 `;
 
 export const RestaurantInfoCardWrapper = styled(PaddedView).attrs((props) => ({

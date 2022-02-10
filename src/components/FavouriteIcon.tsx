@@ -41,5 +41,3 @@ const FavouriteIcon = ({ restaurant }: iFavouriteIcon) => {
 };
 
 export default FavouriteIcon;
-
-const styles = StyleSheet.create({});

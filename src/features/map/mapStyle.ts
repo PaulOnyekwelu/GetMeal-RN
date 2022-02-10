@@ -19,21 +19,23 @@ export const StyledSearchView = styled(PaddedView)`
 `;
 
 export const StyledCalloutView = styled(View)`
-  width: 170px;
-  height: 170px;
-  justify-content: center;
+  width: 160px;
+  height: 140px;
+  justify-content: flex-start;
   align-items: center;
   border-radius: 10px;
+  padding: 10px;
+  padding-top: 0px;
 `;
 export const CompactWebView = styled(WebView)`
-  width: 100%;
-  height: 80%;
+  width: 150px;
+  height: 100px;
   border-radius: 10px;
 `;
 
 export const CompactImage = styled(Image)`
   width: 100%;
-  height: 80%;
+  height: 100px;
   border-radius: 10px;
 `;
 

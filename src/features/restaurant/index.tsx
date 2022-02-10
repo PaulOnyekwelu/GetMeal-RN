@@ -13,11 +13,14 @@ import SearchComponent from "./components/SearchComponent";
 import { StackScreenProps } from "@react-navigation/stack";
 import { restaurantParamList } from "../../infras/navigations/restaurants";
 import FavouriteIcon from "../../components/FavouriteIcon";
+import FavouriteRestaurants from "./components/FavouriteRestaurants";
+import { favouriteContext } from "../../services/favourites/context";
 
 type props = StackScreenProps<restaurantParamList, "Restaurant">;
 
 const RestaurantScreen = ({ navigation }: props) => {
   const { restaurants, error, isLoading } = useContext(restaurantContext);
+  const {favourites} = useContext(favouriteContext)
   const [showFav, setShowFav] = useState(false);
 
   return (
@@ -32,6 +35,7 @@ const RestaurantScreen = ({ navigation }: props) => {
           <StyledTitle>{error}</StyledTitle>
         </PaddedView>
       )}
+      {showFav && <FavouriteRestaurants favourites={favourites} />}
       {!isLoading && restaurants && restaurants.length > 0 && (
         <RestaurantListView>
           <FlatList
