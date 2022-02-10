@@ -1,16 +1,26 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import React from "react";
-import { StyledCalloutImage, StyledCalloutText, StyledCalloutView } from "../mapStyle";
-import { iRestaurant } from "../../restaurant/components/RestaurantInfoCard";
+import {
+  CompactImage,
+  StyledCalloutText,
+  StyledCalloutView,
+  CompactWebView,
+} from "../mapStyle";
+import { iRestaurant } from "../../../services/restaurant/context";
 
 type props = {
   restaurant: iRestaurant;
 };
 
 const MapCallout = ({ restaurant }: props) => {
+  const isAndroid = Platform.OS === "android";
   return (
     <StyledCalloutView>
-      <StyledCalloutImage source={{ uri: "https://picsum.photos/700" }} />
+      {isAndroid ? (
+        <CompactWebView source={{ uri: "https://picsum.photos/700" }} />
+      ) : (
+        <CompactImage source={{ uri: "https://picsum.photos/700" }} />
+      )}
       <StyledCalloutText>{restaurant.name}</StyledCalloutText>
     </StyledCalloutView>
   );

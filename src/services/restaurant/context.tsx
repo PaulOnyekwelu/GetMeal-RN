@@ -1,13 +1,42 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { locationContext } from "../location/context";
+import { mockImages } from "./mock";
 import { restaurantService } from "./service";
 
 type iRestaurantContextProvider = {
   children: JSX.Element;
 };
 
+export type iRestaurant = {
+  name: string;
+  icon: string;
+  photos: string[];
+  vicinity: string;
+  rating: number;
+  opening_hours: {
+    open_now: boolean;
+  };
+  business_status: string;
+  geometry: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+    viewport: {
+      northeast: {
+        lat: number;
+        lng: number;
+      };
+      southwest: {
+        lat: number;
+        lng: number;
+      };
+    };
+  };
+};
+
 type iRestaurantContext = {
-  restaurants: any[];
+  restaurants: iRestaurant[];
   isLoading: boolean;
   error: string | null;
 };
@@ -33,7 +62,13 @@ const RestaurantsContextProvider = ({
       (async () => {
         try {
           const { results } = await restaurantService(locationString);
-          setRestaurants(results);
+          const modifiedRes = results.map((item: iRestaurant) => {
+            return {
+              ...item,
+              photos: mockImages,
+            };
+          });
+          setRestaurants(modifiedRes);
           setError(null);
           setIsLoading(false);
         } catch (err: any) {

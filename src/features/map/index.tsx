@@ -7,7 +7,6 @@ import { restaurantContext } from "../../services/restaurant/context";
 import { Callout, Marker } from "react-native-maps";
 import MapCallout from "./components/MapCallout";
 import { StackScreenProps } from "@react-navigation/stack";
-import { rootNavigationParamList } from "../../infras/navigations/app";
 import { restaurantParamList } from "../../infras/navigations/restaurants";
 
 const defaultLocation = {
@@ -26,7 +25,7 @@ const MapScreen = ({ navigation }: props) => {
 
   useEffect(() => {
     if (viewport) {
-      const delta = viewport?.northeast?.lat - viewport?.southwest?.lat;
+      const delta = viewport.northeast.lat - viewport.southwest.lat;
       if (delta) setLatDelta(delta);
     }
   }, [JSON.stringify(viewport)]);
@@ -54,7 +53,6 @@ const MapScreen = ({ navigation }: props) => {
                   }}
                 >
                   <Callout
-                    style={{ width: 170, height: 170 }}
                     onPress={() =>
                       navigation.navigate("RestaurantDetails", { restaurant })
                     }

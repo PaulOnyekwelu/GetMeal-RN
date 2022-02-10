@@ -14,24 +14,13 @@ import {
   StyledTitle,
 } from "../restaurantStyles";
 import { StyledIcon, StyledRow } from "../../styles";
-
-export type iRestaurant = {
-  name: string;
-  icon: string;
-  photos: any[];
-  vicinity: string;
-  rating: number;
-  opening_hours: {
-    open_now: boolean;
-  };
-  business_status: string;
-};
+import { iRestaurant } from "../../../services/restaurant/context";
 
 const RestaurantInfoCard = ({ restuarant }: { restuarant: iRestaurant }) => {
   const {
     name,
     icon,
-    photos: [],
+    photos,
     vicinity,
     rating,
     opening_hours,
@@ -56,7 +45,7 @@ const RestaurantInfoCard = ({ restuarant }: { restuarant: iRestaurant }) => {
 
   return (
     <Card>
-      <StyledCardCover source={{ uri: "https://picsum.photos/700" }} />
+      <StyledCardCover source={{ uri: photos[0] }} />
       <InfoView>
         <StyledTitle>{name}</StyledTitle>
         <RestaurantRatingView $justify="space-between">

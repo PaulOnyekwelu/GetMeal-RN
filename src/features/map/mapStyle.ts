@@ -1,5 +1,6 @@
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import MapView from "react-native-maps";
+import WebView from "react-native-webview";
 import styled from "styled-components";
 import { PaddedView } from "../styles";
 
@@ -17,16 +18,23 @@ export const StyledSearchView = styled(PaddedView)`
   margin: 5%;
 `;
 
-export const StyledCalloutView = styled(TouchableOpacity)`
-  width: 100%;
-  height: 100%;
+export const StyledCalloutView = styled(View)`
+  width: 170px;
+  height: 170px;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
 `;
-
-export const StyledCalloutImage = styled(Image)`
+export const CompactWebView = styled(WebView)`
   width: 100%;
   height: 80%;
+  border-radius: 10px;
+`;
+
+export const CompactImage = styled(Image)`
+  width: 100%;
+  height: 80%;
+  border-radius: 10px;
 `;
 
 export const StyledCalloutText = styled(Text)`
