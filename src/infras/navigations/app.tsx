@@ -2,12 +2,18 @@ import { Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import RestaurantsNavigator from "./restaurants";
+import RestaurantsNavigator, { restaurantParamList } from "./restaurants";
 import MapScreen from "../../features/map";
 
 const SettingScreen = () => <Text>Setting section</Text>;
 
-const Tabs = createBottomTabNavigator();
+export type rootNavigationParamList = {
+  Restaurants: restaurantParamList;
+  Maps: undefined;
+  Settings: undefined;
+}
+
+const Tabs = createBottomTabNavigator<rootNavigationParamList>();
 
 export default function AppNavigator() {
   return (

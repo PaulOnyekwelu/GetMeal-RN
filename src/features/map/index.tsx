@@ -6,6 +6,9 @@ import { locationContext } from "../../services/location/context";
 import { restaurantContext } from "../../services/restaurant/context";
 import { Callout, Marker } from "react-native-maps";
 import MapCallout from "./components/MapCallout";
+import { StackScreenProps } from "@react-navigation/stack";
+import { rootNavigationParamList } from "../../infras/navigations/app";
+import { restaurantParamList } from "../../infras/navigations/restaurants";
 
 const defaultLocation = {
   lat: 0,
@@ -13,7 +16,9 @@ const defaultLocation = {
   viewport: undefined,
 };
 
-const MapScreen = () => {
+type props = StackScreenProps<restaurantParamList, "RestaurantDetails">;
+
+const MapScreen = ({ navigation }: props) => {
   const { location } = useContext(locationContext);
   const { restaurants } = useContext(restaurantContext);
   const { lat, lng, viewport } = location || defaultLocation;
@@ -39,17 +44,22 @@ const MapScreen = () => {
           }}
         >
           {restaurants &&
-            restaurants.map((res, index) => {
+            restaurants.map((restaurant, index) => {
               return (
                 <Marker
-                  key={`${res.geometry.location.lat}-${index}`}
+                  key={`${restaurant.geometry.location.lat}-${index}`}
                   coordinate={{
-                    latitude: res.geometry.location.lat,
-                    longitude: res.geometry.location.lng,
+                    latitude: restaurant.geometry.location.lat,
+                    longitude: restaurant.geometry.location.lng,
                   }}
                 >
-                  <Callout style={{width: 170, height: 170}}>
-                    <MapCallout restaurant={res} />
+                  <Callout
+                    style={{ width: 170, height: 170 }}
+                    onPress={() =>
+                      navigation.navigate("RestaurantDetails", { restaurant })
+                    }
+                  >
+                    <MapCallout restaurant={restaurant} />
                   </Callout>
                 </Marker>
               );
