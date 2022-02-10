@@ -17,7 +17,7 @@ const MapCallout = ({ restaurant }: props) => {
   return (
     <StyledCalloutView>
       {isAndroid ? (
-        <CompactWebView source={{ uri: "https://picsum.photos/700" }} />
+        <CompactWebView source={{ uri: restaurant.photos[0] }} />
       ) : (
         <CompactImage source={{ uri: "https://picsum.photos/700" }} />
       )}
