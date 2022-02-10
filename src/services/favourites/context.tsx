@@ -11,7 +11,7 @@ type iFavouriteContextProvider = {
   children: JSX.Element;
 };
 
-const favouriteContext = createContext<iFavouriteContext>({
+export const favouriteContext = createContext<iFavouriteContext>({
   favourites: [],
   addFavourite: (fav: iRestaurant) => null,
   removeFavourite: (fav: iRestaurant) => null,
@@ -24,8 +24,8 @@ function FavouriteContextProvider({ children }: iFavouriteContextProvider) {
     if (fav) setFavourites([...favourites, fav]);
   };
   const removeFavourite = (fav: iRestaurant) => {
-    const newFavs = favourites.filter((item) => item.place_id !== fav.place_id)
-    setFavourites(newFavs)
+    const newFavs = favourites.filter((item) => item.place_id !== fav.place_id);
+    setFavourites(newFavs);
   };
   return (
     <favouriteContext.Provider

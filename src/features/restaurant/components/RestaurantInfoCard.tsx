@@ -1,5 +1,4 @@
 import React from "react";
-import { Image } from "react-native";
 import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 import { Entypo } from "@expo/vector-icons";
@@ -16,7 +15,7 @@ import {
 import { StyledIcon, StyledRow } from "../../styles";
 import { iRestaurant } from "../../../services/restaurant/context";
 
-const RestaurantInfoCard = ({ restuarant }: { restuarant: iRestaurant }) => {
+const RestaurantInfoCard = ({ restaurant }: { restaurant: iRestaurant }) => {
   const {
     name,
     icon,
@@ -25,7 +24,7 @@ const RestaurantInfoCard = ({ restuarant }: { restuarant: iRestaurant }) => {
     rating,
     opening_hours,
     business_status,
-  } = restuarant;
+  } = restaurant;
   const ratedStar = (value: number) => {
     if (value) {
       let rated = value > 5 ? 5 : value <= 0 ? 0 : value;

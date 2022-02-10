@@ -7,6 +7,7 @@ import { theme } from "./src/infras/theme";
 import RestaurantsContextProvider from "./src/services/restaurant/context";
 import LocationContextProvider from "./src/services/location/context";
 import Navigator from "./src/infras/navigations";
+import FavouriteContextProvider from "./src/services/favourites/context";
 
 export default function App() {
   const [oswaldLoaded] = useFonts({
@@ -18,11 +19,13 @@ export default function App() {
   if (!oswaldLoaded || !latoLoaded) return null;
   return (
     <ThemeProvider theme={theme}>
-      <LocationContextProvider>
-        <RestaurantsContextProvider>
-          <Navigator />
-        </RestaurantsContextProvider>
-      </LocationContextProvider>
+      <FavouriteContextProvider>
+        <LocationContextProvider>
+          <RestaurantsContextProvider>
+            <Navigator />
+          </RestaurantsContextProvider>
+        </LocationContextProvider>
+      </FavouriteContextProvider>
     </ThemeProvider>
   );
 }

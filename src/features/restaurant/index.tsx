@@ -12,6 +12,7 @@ import { restaurantContext } from "../../services/restaurant/context";
 import SearchComponent from "./components/SearchComponent";
 import { StackScreenProps } from "@react-navigation/stack";
 import { restaurantParamList } from "../../infras/navigations/restaurants";
+import FavouriteIcon from "../../components/FavouriteIcon";
 
 type props = StackScreenProps<restaurantParamList, "Restaurant">;
 
@@ -36,15 +37,20 @@ const RestaurantScreen = ({ navigation }: props) => {
           <FlatList
             data={restaurants}
             renderItem={({ item }) => (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("RestaurantDetails", { restaurant: item })
-                }
-              >
+              <>
                 <RestaurantInfoCardWrapper>
-                  <RestaurantInfoCard restuarant={item} />
+                  <FavouriteIcon restaurant={item} />
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate("RestaurantDetails", {
+                        restaurant: item,
+                      })
+                    }
+                  >
+                    <RestaurantInfoCard restaurant={item} />
+                  </TouchableOpacity>
                 </RestaurantInfoCardWrapper>
-              </TouchableOpacity>
+              </>
             )}
             keyExtractor={(item) => item.place_id}
           />
