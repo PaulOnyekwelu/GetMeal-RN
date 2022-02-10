@@ -35,7 +35,7 @@ const RestaurantScreen = ({ navigation }: props) => {
           <StyledTitle>{error}</StyledTitle>
         </PaddedView>
       )}
-      {showFav && <FavouriteRestaurants favourites={favourites} />}
+      {showFav && <FavouriteRestaurants navigateTo={navigation.navigate} favourites={favourites} />}
       {!isLoading && restaurants && restaurants.length > 0 && (
         <RestaurantListView>
           <FlatList
