@@ -17,6 +17,7 @@ export type iRestaurant = {
     open_now: boolean;
   };
   business_status: string;
+  place_id: string;
   geometry: {
     location: {
       lat: number;
