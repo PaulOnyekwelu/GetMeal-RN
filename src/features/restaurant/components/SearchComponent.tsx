@@ -3,7 +3,12 @@ import { StyledSearchView } from "../restaurantStyles";
 import { Searchbar } from "react-native-paper";
 import { locationContext } from "../../../services/location/context";
 
-const SearchComponent = () => {
+type iSearchComponent = {
+  showFav: boolean;
+  toggleShowFav: () => void;
+};
+
+const SearchComponent = ({ showFav, toggleShowFav }: iSearchComponent) => {
   const { onSearch, keyword } = useContext(locationContext);
   const [searchValue, setSearchValue] = useState(keyword);
 
@@ -14,6 +19,8 @@ const SearchComponent = () => {
   return (
     <StyledSearchView>
       <Searchbar
+        icon={showFav ? "heart" : "heart-outline"}
+        onIconPress={toggleShowFav}
         autoComplete={false}
         value={searchValue}
         onChangeText={(text) => setSearchValue(text)}

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import RestaurantInfoCard from "./components/RestaurantInfoCard";
 import { CustomSafeAreaView, PaddedView } from "../styles";
 import {
@@ -17,10 +17,14 @@ type props = StackScreenProps<restaurantParamList, "Restaurant">;
 
 const RestaurantScreen = ({ navigation }: props) => {
   const { restaurants, error, isLoading } = useContext(restaurantContext);
+  const [showFav, setShowFav] = useState(false);
 
   return (
     <CustomSafeAreaView>
-      <SearchComponent />
+      <SearchComponent
+        showFav={showFav}
+        toggleShowFav={() => setShowFav(!showFav)}
+      />
       {isLoading && <ActivityIndicatorView />}
       {!isLoading && error && (
         <PaddedView>
