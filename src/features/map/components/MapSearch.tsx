@@ -14,6 +14,7 @@ const MapSearch = () => {
   return (
     <StyledSearchView>
       <Searchbar
+        icon="map"
         autoComplete={false}
         value={searchValue}
         onChangeText={(text) => setSearchValue(text)}
