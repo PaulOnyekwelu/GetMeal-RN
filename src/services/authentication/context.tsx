@@ -1,5 +1,5 @@
 import React, { createContext, SetStateAction, useState } from "react";
-import { loginRequest, registerRequest, logOutUser } from "./service";
+import { loginRequest, registerRequest, logout } from "./service";
 
 export type iUser = {
   createdAt?: number | null;
@@ -82,6 +82,12 @@ const AuthContextProvider = ({ children }: iAuthContextProvider) => {
       setIsLoading(false);
     }
   };
+
+  const logOutUser = async() => {
+    setUser(null);
+    setError(null);
+    await logout()
+  }
 
   return (
     <AuthContext.Provider

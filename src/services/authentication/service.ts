@@ -30,7 +30,7 @@ export const registerRequest = async (
   }
 };
 
-export const logOutUser = async () => {
+export const logout = async () => {
   const auth = getAuth();
   return signOut(auth);
 };

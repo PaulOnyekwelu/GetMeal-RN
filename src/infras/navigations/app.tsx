@@ -7,14 +7,15 @@ import MapScreen from "../../features/map";
 import { AuthButton } from "../../features/auth/AuthStyle";
 import { useContext } from "react";
 import { AuthContext } from "../../services/authentication/context";
+import { CustomSafeAreaView } from "../../features/styles";
 
 const SettingScreen = () => {
   const { logOutUser } = useContext(AuthContext);
   return (
-    <>
+    <CustomSafeAreaView>
       <Text>Setting section</Text>
       <AuthButton onPress={() => logOutUser()}>logout</AuthButton>
-    </>
+    </CustomSafeAreaView>
   );
 };
 
