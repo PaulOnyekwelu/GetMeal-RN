@@ -1,6 +1,7 @@
-import { StyleSheet, View } from "react-native";
-import React, { useState } from "react";
+import { StyleSheet, View, Text } from "react-native";
+import React, { useContext, useState } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
+import { ActivityIndicator } from "react-native-paper";
 import {
   AuthButton,
   FormSection,
@@ -10,6 +11,7 @@ import {
   AuthButtonText,
 } from "./AuthStyle";
 import { authParamList } from "../../infras/navigations/auth";
+import { AuthContext } from "../../services/authentication/context";
 
 type props = StackScreenProps<authParamList, "Register">;
 
@@ -17,6 +19,13 @@ const RegisterScreen = ({ navigation }: props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const { isLoading, error, registerUser, setError } = useContext(AuthContext);
+
+  const goBack = () => {
+    if (setError) setError(null);
+    navigation.goBack();
+  };
+
   return (
     <CustomImageBackground>
       <AuthScreenWrapper>
@@ -53,16 +62,25 @@ const RegisterScreen = ({ navigation }: props) => {
             onChangeText={(text: string) => setRepeatPassword(text)}
             secureTextEntry
           />
-          <AuthButton
-            icon="email"
-            mode="contained"
-            onPress={() => console.log("")}
-          >
-            <AuthButtonText>Register</AuthButtonText>
-          </AuthButton>
+          {error !== null && !isLoading && (
+            <View style={{ paddingBottom: 20 }}>
+              <Text style={{ color: "red" }}>{error}</Text>
+            </View>
+          )}
+          {isLoading ? (
+            <ActivityIndicator size="small" />
+          ) : (
+            <AuthButton
+              icon="email"
+              mode="contained"
+              onPress={() => registerUser(email, password, repeatPassword)}
+            >
+              <AuthButtonText>Register</AuthButtonText>
+            </AuthButton>
+          )}
         </FormSection>
         <View style={{ paddingTop: 16 }} />
-        <AuthButton mode="contained" onPress={() => navigation.goBack()}>
+        <AuthButton mode="contained" onPress={goBack}>
           <AuthButtonText>Back</AuthButtonText>
         </AuthButton>
       </AuthScreenWrapper>

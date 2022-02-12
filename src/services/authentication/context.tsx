@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, SetStateAction, useState } from "react";
 import { loginRequest, registerRequest, logOutUser } from "./service";
 
 export type iUser = {
@@ -22,6 +22,7 @@ type iAuthContext = {
   user: iUser | null;
   isLoading: boolean;
   error: string | null;
+  setError: React.Dispatch<SetStateAction<string | null>> | undefined;
   loginUser: (email: string, password: string) => void;
   registerUser: (
     email: string,
@@ -36,6 +37,7 @@ export const AuthContext = createContext<iAuthContext>({
   user: null,
   isLoading: false,
   error: "",
+  setError: undefined,
   loginUser: () => null,
   registerUser: () => null,
   logOutUser: () => null,
@@ -49,8 +51,7 @@ const AuthContextProvider = ({ children }: iAuthContextProvider) => {
   const loginUser = async (email: string, password: string) => {
     try {
       setIsLoading(true);
-      if (!email || !password)
-        throw Error("Error:: all field are required");
+      if (!email || !password) throw Error("Error:: all field are required");
       const authUser: iUser = await loginRequest(email, password);
       setUser(authUser);
       setIsLoading(false);
@@ -68,7 +69,7 @@ const AuthContextProvider = ({ children }: iAuthContextProvider) => {
     try {
       setIsLoading(true);
       if (!email || !password || !repeatPassword)
-      throw Error("Error:: all field are required");
+        throw Error("Error:: all field are required");
       if (password !== repeatPassword) {
         throw Error("Error: Password and repeat password does not match!");
       }
@@ -89,6 +90,7 @@ const AuthContextProvider = ({ children }: iAuthContextProvider) => {
         user,
         isLoading,
         error,
+        setError,
         loginUser,
         registerUser,
         logOutUser,

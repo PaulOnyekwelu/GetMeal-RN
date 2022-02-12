@@ -18,7 +18,12 @@ type props = StackScreenProps<authParamList, "Login">;
 const LoginScreen = ({ navigation }: props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { isLoading, loginUser, error } = useContext(AuthContext);
+  const { isLoading, loginUser, error, setError } = useContext(AuthContext);
+
+  const goBack = () => {
+    if (setError) setError(null);
+    navigation.goBack();
+  };
 
   return (
     <CustomImageBackground>
@@ -63,7 +68,7 @@ const LoginScreen = ({ navigation }: props) => {
           )}
         </FormSection>
         <View style={{ paddingTop: 16 }} />
-        <AuthButton mode="contained" onPress={() => navigation.goBack()}>
+        <AuthButton mode="contained" onPress={goBack}>
           <AuthButtonText>Back</AuthButtonText>
         </AuthButton>
       </AuthScreenWrapper>
