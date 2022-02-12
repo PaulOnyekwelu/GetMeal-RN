@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import AuthScreen from "../../features/auth";
+import AuthScreen from "../../features/auth/AuthScreen";
 import LoginScreen from "../../features/auth/LoginScreen";
 import RegisterScreen from "../../features/auth/RegisterScreen";
 

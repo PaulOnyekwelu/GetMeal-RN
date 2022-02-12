@@ -3,8 +3,8 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
-import RestaurantScreen from "../../features/restaurant";
-import RestaurantDetails from "../../features/restaurant/RestaurantDetails";
+import RestaurantScreen from "../../features/restaurant/RestaurantScreen";
+import RestaurantDetails from "../../features/restaurant/RestaurantDetailsScreen";
 import { iRestaurant } from "../../services/restaurant/context";
 
 export type restaurantParamList = {

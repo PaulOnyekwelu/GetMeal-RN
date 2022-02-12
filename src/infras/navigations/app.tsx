@@ -2,7 +2,7 @@ import { Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import RestaurantsNavigator, { restaurantParamList } from "./restaurants";
-import MapScreen from "../../features/map";
+import MapScreen from "../../features/map/MapScreen";
 
 import { AuthButton } from "../../features/auth/AuthStyle";
 import { useContext } from "react";
