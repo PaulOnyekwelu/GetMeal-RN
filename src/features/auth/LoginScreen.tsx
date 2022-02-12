@@ -1,5 +1,5 @@
-import { StyleSheet, View } from "react-native";
-import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import React, { useContext, useState } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
 import {
   AuthButton,
@@ -10,12 +10,16 @@ import {
   FormSection,
 } from "./AuthStyle";
 import { authParamList } from "../../infras/navigations/auth";
+import { AuthContext } from "../../services/authentication/context";
+import { ActivityIndicator } from "react-native-paper";
 
 type props = StackScreenProps<authParamList, "Login">;
 
 const LoginScreen = ({ navigation }: props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { isLoading, loginUser, error } = useContext(AuthContext);
+
   return (
     <CustomImageBackground>
       <AuthScreenWrapper>
@@ -41,13 +45,22 @@ const LoginScreen = ({ navigation }: props) => {
             onChangeText={(text: string) => setPassword(text)}
             secureTextEntry
           />
-          <AuthButton
-            icon="lock"
-            mode="contained"
-            onPress={() => console.log("")}
-          >
-            <AuthButtonText>Login</AuthButtonText>
-          </AuthButton>
+          {error !== null && !isLoading && (
+            <View style={{ paddingBottom: 20 }}>
+              <Text style={{ color: "red" }}>{error}</Text>
+            </View>
+          )}
+          {isLoading ? (
+            <ActivityIndicator size="small" />
+          ) : (
+            <AuthButton
+              icon="lock"
+              mode="contained"
+              onPress={() => loginUser(email, password)}
+            >
+              <AuthButtonText>Login</AuthButtonText>
+            </AuthButton>
+          )}
         </FormSection>
         <View style={{ paddingTop: 16 }} />
         <AuthButton mode="contained" onPress={() => navigation.goBack()}>

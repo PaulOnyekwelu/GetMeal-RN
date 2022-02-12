@@ -4,7 +4,19 @@ import { Ionicons } from "@expo/vector-icons";
 import RestaurantsNavigator, { restaurantParamList } from "./restaurants";
 import MapScreen from "../../features/map";
 
-const SettingScreen = () => <Text>Setting section</Text>;
+import { AuthButton } from "../../features/auth/AuthStyle";
+import { useContext } from "react";
+import { AuthContext } from "../../services/authentication/context";
+
+const SettingScreen = () => {
+  const { logOutUser } = useContext(AuthContext);
+  return (
+    <>
+      <Text>Setting section</Text>
+      <AuthButton onPress={() => logOutUser()}>logout</AuthButton>
+    </>
+  );
+};
 
 export type rootNavigationParamList = {
   Restaurants: restaurantParamList;

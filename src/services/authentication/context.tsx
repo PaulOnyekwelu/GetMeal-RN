@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { loginRequest, registerRequest } from "./service";
+import { loginRequest, registerRequest, logOutUser } from "./service";
 
 export type iUser = {
   createdAt?: number | null;
@@ -21,9 +21,14 @@ type iAuthContext = {
   isAuthenticated: boolean;
   user: iUser | null;
   isLoading: boolean;
-  error: string;
+  error: string | null;
   loginUser: (email: string, password: string) => void;
-  registerUser: (email: string, password: string, repeatPassword: string) => void;
+  registerUser: (
+    email: string,
+    password: string,
+    repeatPassword: string
+  ) => void;
+  logOutUser: () => void;
 };
 
 export const AuthContext = createContext<iAuthContext>({
@@ -33,21 +38,24 @@ export const AuthContext = createContext<iAuthContext>({
   error: "",
   loginUser: () => null,
   registerUser: () => null,
+  logOutUser: () => null,
 });
 
 const AuthContextProvider = ({ children }: iAuthContextProvider) => {
   const [user, setUser] = useState<iUser | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
   const loginUser = async (email: string, password: string) => {
     try {
       setIsLoading(true);
+      if (!email || !password)
+        throw Error("Error:: all field are required");
       const authUser: iUser = await loginRequest(email, password);
       setUser(authUser);
       setIsLoading(false);
     } catch (error: any) {
-      setError(error.toString());
+      setError(error.toString().split(":")[2]);
       setIsLoading(false);
     }
   };
@@ -59,14 +67,17 @@ const AuthContextProvider = ({ children }: iAuthContextProvider) => {
   ) => {
     try {
       setIsLoading(true);
+      if (!email || !password || !repeatPassword)
+      throw Error("Error:: all field are required");
       if (password !== repeatPassword) {
         throw Error("Error: Password and repeat password does not match!");
       }
       const authUser: iUser = await registerRequest(email, password);
       setUser(authUser);
+
       setIsLoading(false);
     } catch (error: any) {
-      setError(error.toString());
+      setError(error.toString().split(":")[2]);
       setIsLoading(false);
     }
   };
@@ -80,6 +91,7 @@ const AuthContextProvider = ({ children }: iAuthContextProvider) => {
         error,
         loginUser,
         registerUser,
+        logOutUser,
       }}
     >
       {children}
