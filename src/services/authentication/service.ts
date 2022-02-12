@@ -1,4 +1,8 @@
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { iUser } from "./context";
 
 export const loginRequest = async (
@@ -8,6 +12,26 @@ export const loginRequest = async (
   try {
     const auth = getAuth();
     const response = await signInWithEmailAndPassword(auth, email, password);
+    if (response) {
+      const user: iUser = response.user;
+      return user;
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
+export const registerRequest = async (
+  email: string,
+  password: string
+): Promise<any> => {
+  try {
+    const auth = getAuth();
+    const response = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
     if (response) {
       const user: iUser = response.user;
       return user;

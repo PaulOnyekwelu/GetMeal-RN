@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
 import React, { createContext, useState } from "react";
-import { loginRequest } from "./service";
+import { loginRequest, registerRequest } from "./service";
 
 export type iUser = {
   createdAt?: number | null;
@@ -24,6 +23,7 @@ type iAuthContext = {
   isLoading: boolean;
   error: string;
   loginUser: (email: string, password: string) => void;
+  registerUser: (email: string, password: string, repeatPassword: string) => void;
 };
 
 export const AuthContext = createContext<iAuthContext>({
@@ -32,6 +32,7 @@ export const AuthContext = createContext<iAuthContext>({
   isLoading: false,
   error: "",
   loginUser: () => null,
+  registerUser: () => null,
 });
 
 const AuthContextProvider = ({ children }: iAuthContextProvider) => {
@@ -51,11 +52,35 @@ const AuthContextProvider = ({ children }: iAuthContextProvider) => {
     }
   };
 
-  const registerUser = (email: string, password: string, repeatPassword: string) => {};
+  const registerUser = async (
+    email: string,
+    password: string,
+    repeatPassword: string
+  ) => {
+    try {
+      setIsLoading(true);
+      if (password !== repeatPassword) {
+        throw Error("Error: Password and repeat password does not match!");
+      }
+      const authUser: iUser = await registerRequest(email, password);
+      setUser(authUser);
+      setIsLoading(false);
+    } catch (error: any) {
+      setError(error.toString());
+      setIsLoading(false);
+    }
+  };
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated: !!user, user, isLoading, error, loginUser }}
+      value={{
+        isAuthenticated: !!user,
+        user,
+        isLoading,
+        error,
+        loginUser,
+        registerUser,
+      }}
     >
       {children}
     </AuthContext.Provider>
