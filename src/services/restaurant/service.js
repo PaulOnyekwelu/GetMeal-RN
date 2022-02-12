@@ -1,9 +1,9 @@
 import { mocks } from "./mock";
 
 export const restaurantService = (location) => {
-  const restaurants = mocks[location];
   return new Promise((resolve, reject) => {
+    const restaurants = mocks[location];
     if (!restaurants) reject("Restaurants not found");
-    resolve(restaurants);
+    else resolve(restaurants);
   });
 };

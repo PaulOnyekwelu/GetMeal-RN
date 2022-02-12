@@ -58,6 +58,7 @@ const RestaurantsContextProvider = ({
   const { lat, lng } = location || { lat: undefined, lng: undefined };
 
   const retrieveRestaurants = (locationString: string) => {
+    setError(null);
     setIsLoading(true);
     const timeout = setTimeout(() => {
       (async () => {
@@ -78,7 +79,7 @@ const RestaurantsContextProvider = ({
           setIsLoading(false);
         }
       })();
-    }, 2000);
+    }, 3000);
     return () => clearTimeout(timeout);
   };
 

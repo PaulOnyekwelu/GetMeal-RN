@@ -9,6 +9,7 @@ import {
 } from "./AuthStyle";
 import { StackScreenProps } from "@react-navigation/stack";
 import { authParamList } from "../../infras/navigations/auth";
+import AnimatedLottieView from "lottie-react-native";
 
 type props = StackScreenProps<authParamList, "Auth">;
 
@@ -16,6 +17,12 @@ const AuthScreen = ({ navigation }: props) => {
   return (
     <CustomImageBackground>
       <AuthScreenWrapper>
+          <AnimatedLottieView
+            source={require("../../../assets/waterMelonAnimation.json")}
+            style={{width: "100%", position: "absolute", top: 10}}
+            autoPlay
+            loop
+          />
         <FormSection>
           <AuthButton
             icon="lock"

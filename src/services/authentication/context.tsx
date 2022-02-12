@@ -1,4 +1,4 @@
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import React, {
   createContext,
   SetStateAction,
@@ -97,8 +97,14 @@ const AuthContextProvider = ({ children }: iAuthContextProvider) => {
 
   useEffect(() => {
     const auth = getAuth();
-    const authUser = auth.currentUser;
-    if (authUser) setUser(authUser);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        setIsLoading(false);
+      } else {
+        setIsLoading(false);
+      }
+    });
   }, []);
 
   return (
