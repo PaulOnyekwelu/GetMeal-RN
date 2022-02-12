@@ -1,6 +1,7 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { iRestaurant } from "../restaurant/context";
-import AsyncStorageLib from "@react-native-async-storage/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AuthContext } from "../authentication/context";
 
 export type iFavouriteContext = {
   favourites: iRestaurant[];
@@ -14,16 +15,17 @@ type iFavouriteContextProvider = {
 
 export const favouriteContext = createContext<iFavouriteContext>({
   favourites: [],
-  addFavourite: (fav: iRestaurant) => null,
-  removeFavourite: (fav: iRestaurant) => null,
+  addFavourite: () => null,
+  removeFavourite: () => null,
 });
 
 function FavouriteContextProvider({ children }: iFavouriteContextProvider) {
   const [favourites, setFavourites] = useState<iRestaurant[]>([]);
+  const {user} = useContext(AuthContext)
 
   const loadFavorites = async () => {
     try {
-      const favs = await AsyncStorageLib.getItem("@favourites");
+      const favs = await AsyncStorage.getItem(`@favourites-${user?.uid}`);
       if (favs) setFavourites(JSON.parse(favs));
     } catch (error) {
       console.log({ error });
@@ -32,7 +34,7 @@ function FavouriteContextProvider({ children }: iFavouriteContextProvider) {
 
   const saveFavorites = async (favs: iRestaurant[]) => {
     try {
-      await AsyncStorageLib.setItem("@favourites", JSON.stringify(favs));
+      await AsyncStorage.setItem(`@favourites-${user?.uid}`, JSON.stringify(favs));
     } catch (error) {
       console.log({ error });
     }

@@ -1,4 +1,10 @@
-import React, { createContext, SetStateAction, useState } from "react";
+import { getAuth } from "firebase/auth";
+import React, {
+  createContext,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { loginRequest, registerRequest, logout } from "./service";
 
 export type iUser = {
@@ -83,11 +89,17 @@ const AuthContextProvider = ({ children }: iAuthContextProvider) => {
     }
   };
 
-  const logOutUser = async() => {
+  const logOutUser = async () => {
     setUser(null);
     setError(null);
-    await logout()
-  }
+    await logout();
+  };
+
+  useEffect(() => {
+    const auth = getAuth();
+    const authUser = auth.currentUser;
+    if (authUser) setUser(authUser);
+  }, []);
 
   return (
     <AuthContext.Provider
