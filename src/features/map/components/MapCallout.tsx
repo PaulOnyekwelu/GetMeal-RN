@@ -1,4 +1,4 @@
-import { Platform, StyleSheet } from "react-native";
+import { Platform } from "react-native";
 import React from "react";
 import {
   CompactImage,
@@ -27,5 +27,3 @@ const MapCallout = ({ restaurant }: props) => {
 };
 
 export default MapCallout;
-
-const styles = StyleSheet.create({});

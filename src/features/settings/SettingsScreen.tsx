@@ -1,4 +1,4 @@
-import { StyleSheet, Text } from "react-native";
+import { Text } from "react-native";
 import React, { useContext } from "react";
 import { Avatar, List } from "react-native-paper";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -36,5 +36,3 @@ const SettingsScreen = ({ navigation }: props) => {
 };
 
 export default SettingsScreen;
-
-const styles = StyleSheet.create({});

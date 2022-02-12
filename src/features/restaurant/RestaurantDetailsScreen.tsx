@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import React from "react";
 import RestaurantInfoCard from "./components/RestaurantInfoCard";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -55,5 +55,3 @@ const RestaurantDetails = ({ route }: props) => {
 };
 
 export default RestaurantDetails;
-
-const styles = StyleSheet.create({});

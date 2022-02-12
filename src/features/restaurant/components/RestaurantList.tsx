@@ -1,6 +1,5 @@
 import {
   FlatList,
-  StyleSheet,
   TouchableOpacity,
 } from "react-native";
 import React from "react";
@@ -49,5 +48,3 @@ const RestaurantList = ({ restaurants, navigation }: iRestaurantList) => {
 };
 
 export default RestaurantList;
-
-const styles = StyleSheet.create({});

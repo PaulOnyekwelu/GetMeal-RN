@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "react-native";
+import { View, Text } from "react-native";
 import React, { useContext, useState } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ActivityIndicator } from "react-native-paper";
@@ -89,5 +89,3 @@ const RegisterScreen = ({ navigation }: props) => {
 };
 
 export default RegisterScreen;
-
-const styles = StyleSheet.create({});

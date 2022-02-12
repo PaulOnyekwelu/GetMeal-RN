@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { FavRestaurant, FavRestaurantWrapper } from "../restaurantStyles";
 import MapCallout from "../../map/components/MapCallout";

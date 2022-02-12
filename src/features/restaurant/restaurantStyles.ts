@@ -32,8 +32,6 @@ export const StyledParagraph = styled(Text)`
 
 export const RestaurantListView = styled(View)`
   flex: 1;
-  background-color: ${(props) => props.theme.colors.bg.secondary};
-  /* padding: ${({ theme }) => theme.sizes[1]}; */
 `;
 
 export const StyledCardCover = styled(Card.Cover)`
@@ -54,7 +52,6 @@ export const StyledRating = styled(StyledRow).attrs({
 })``;
 
 export const StyledSearchView = styled(PaddedView)`
-  background-color: ${({ theme }) => theme.colors.bg.secondary};
 `;
 
 export const FavRestaurantWrapper = styled(PaddedView).attrs({

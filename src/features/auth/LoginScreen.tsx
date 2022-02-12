@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import React, { useContext, useState } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
 import {
@@ -77,5 +77,3 @@ const LoginScreen = ({ navigation }: props) => {
 };
 
 export default LoginScreen;
-
-const styles = StyleSheet.create({});

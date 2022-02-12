@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import {
   AuthButton,
@@ -46,5 +46,3 @@ const AuthScreen = ({ navigation }: props) => {
 };
 
 export default AuthScreen;
-
-const styles = StyleSheet.create({});

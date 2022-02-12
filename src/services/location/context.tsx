@@ -37,7 +37,7 @@ export const locationContext = createContext<iLocationContext>({
   isLoading: false,
   error: null,
   keyword: "",
-  onSearch: (searchTerm: string) => {},
+  onSearch: () => {},
 });
 
 const LocationContextProvider = ({ children }: iLocationContextProvider) => {
