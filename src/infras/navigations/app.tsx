@@ -1,23 +1,9 @@
-import { Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import RestaurantsNavigator, { restaurantParamList } from "./restaurants";
 import MapScreen from "../../features/map/MapScreen";
+import settingsNavigator from "./settings";
 
-import { AuthButton } from "../../features/auth/AuthStyle";
-import { useContext } from "react";
-import { AuthContext } from "../../services/authentication/context";
-import { CustomSafeAreaView } from "../../features/styles";
-
-const SettingScreen = () => {
-  const { logOutUser } = useContext(AuthContext);
-  return (
-    <CustomSafeAreaView>
-      <Text>Setting section</Text>
-      <AuthButton onPress={() => logOutUser()}>logout</AuthButton>
-    </CustomSafeAreaView>
-  );
-};
 
 export type rootNavigationParamList = {
   Restaurants: restaurantParamList;
@@ -61,7 +47,7 @@ export default function AppNavigator() {
           ),
         }}
         name="Settings"
-        component={SettingScreen}
+        component={settingsNavigator}
       />
     </Tabs.Navigator>
   );
