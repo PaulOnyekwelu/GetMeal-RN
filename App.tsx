@@ -3,21 +3,33 @@ import { ThemeProvider } from "styled-components";
 import { useFonts } from "expo-font";
 import { Oswald_400Regular } from "@expo-google-fonts/oswald";
 import { Lato_400Regular } from "@expo-google-fonts/lato";
+import {
+  API_KEY,
+  AUTH_DOMAIN,
+  PROJECT_ID,
+  STORAGE_BUCKET,
+  MESSAGING_SENDER_ID,
+  APP_ID,
+} from "@env";
 import { theme } from "./src/infras/theme";
 import Navigator from "./src/infras/navigations";
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
 import AuthContextProvider from "./src/services/authentication/context";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCREnyMvaplhuOTQ6HmIAO_Y3u31jgfJ1o",
-  authDomain: "getmeal-56abf.firebaseapp.com",
-  projectId: "getmeal-56abf",
-  storageBucket: "getmeal-56abf.appspot.com",
-  messagingSenderId: "72357226503",
-  appId: "1:72357226503:web:796266b11970169496a2a2",
+  apiKey: API_KEY,
+  authDomain: AUTH_DOMAIN,
+  projectId: PROJECT_ID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID,
 };
 
-initializeApp(firebaseConfig);
+if (Object.keys(getApps()).length  !== 0) {
+  getApps();
+} else {
+  initializeApp(firebaseConfig);
+}
 
 export default function App() {
   const [oswaldLoaded] = useFonts({
