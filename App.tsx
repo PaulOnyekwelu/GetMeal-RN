@@ -25,7 +25,7 @@ const firebaseConfig = {
   appId: APP_ID,
 };
 
-if (Object.keys(getApps()).length  !== 0) {
+if (Object.keys(getApps()).length !== 0) {
   getApps();
 } else {
   initializeApp(firebaseConfig);
