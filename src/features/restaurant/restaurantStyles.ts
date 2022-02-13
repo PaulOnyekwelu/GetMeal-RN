@@ -51,14 +51,11 @@ export const StyledRating = styled(StyledRow).attrs({
   $align: "stretch",
 })``;
 
-export const StyledSearchView = styled(PaddedView)`
-`;
+export const StyledSearchView = styled(PaddedView)``;
 
 export const FavRestaurantWrapper = styled(PaddedView).attrs({
   $direction: "horizontal",
-})`
-  background-color: ${({ theme }) => theme.colors.bg.secondary};
-`;
+})``;
 
 export const FavRestaurant = styled(View)`
   padding: 5px;

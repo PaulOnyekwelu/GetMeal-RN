@@ -7,6 +7,10 @@ export const CustomSafeAreaView = styled(SafeAreaView)`
   background-color: ${({ theme }) => theme.colors.bg.primary};
 `;
 
+export const SafeViewNoMargin = styled(CustomSafeAreaView)`
+  margin: 0px;
+`;
+
 export const PaddedView = styled(View).attrs((props) => ({
   $direction: "both",
 }))`

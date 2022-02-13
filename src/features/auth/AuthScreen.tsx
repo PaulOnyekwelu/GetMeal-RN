@@ -17,12 +17,14 @@ const AuthScreen = ({ navigation }: props) => {
   return (
     <CustomImageBackground>
       <AuthScreenWrapper>
+          <View style={{width: "100%", position: "absolute", top: 10}}>
           <AnimatedLottieView
             source={require("../../../assets/waterMelonAnimation.json")}
-            style={{width: "100%", position: "absolute", top: 10}}
+            style={{width: "100%"}}
             autoPlay
             loop
           />
+          </View>
         <FormSection>
           <AuthButton
             icon="lock"

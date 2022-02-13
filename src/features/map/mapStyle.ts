@@ -9,7 +9,6 @@ export const Map = styled(MapView)`
 `;
 
 export const StyledSearchView = styled(PaddedView)`
-  background-color: ${({ theme }) => theme.colors.bg.secondary};
   position: absolute;
   top: 40px;
   z-index: 999;
